@@ -3,7 +3,7 @@ import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useStoreMeals } from '../stores/meals'
-import MealItem from '../components/MealItem.vue'
+import Meals from '../components/Meals.vue'
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 const storeMeals = useStoreMeals()
@@ -27,6 +27,7 @@ function searchByLetter() {
 </script>
 
 <template>
+  <!-- アルファベットをfelxで並列に配置 -->
   <div class="flex gap-2 mt-2 justify-center">
     <router-link
       :to="{ name: 'byLetter', params: { letter } }"
@@ -36,12 +37,5 @@ function searchByLetter() {
       {{ letter }}
     </router-link>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-3">
-    <MealItem
-      :meal="meal"
-      v-for="meal of allMealsByLetter"
-      :key="meal.idMeal"
-      class="bg-white shadow rounded-t-xl"
-    />
-  </div>
+  <Meals :meals="allMealsByLetter" />
 </template>

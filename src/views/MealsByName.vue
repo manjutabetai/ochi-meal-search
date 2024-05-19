@@ -3,8 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useStoreMeals } from '../stores/meals'
-import YoutubeButton from '../components/YoutubeButton.vue'
-import MealItem from '../components/MealItem.vue'
+import Meals from '../components/Meals.vue'
 
 const storeMeals = useStoreMeals()
 const { allMeals } = storeToRefs(storeMeals)
@@ -24,7 +23,7 @@ onMounted(() => {
 
 <template>
   <!-- インプット -->
-  <div class="p-8">
+  <div class="px-3">
     <input
       type="text"
       class="rounded border-2 border-grey-200 w-full"
@@ -34,12 +33,8 @@ onMounted(() => {
     />
   </div>
   <!-- 各データ -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-3">
-    <MealItem
-      :meal="meal"
-      v-for="meal of allMeals"
-      :key="meal.idMeal"
-      class="bg-white shadow rounded-t-xl"
-    />
+  <div class="px-3 pb-0 text-orange-500">
+    <h1 class="text-4xl font-bold mb-4">Meals By Name</h1>
   </div>
+  <Meals :meals="allMeals" />
 </template>

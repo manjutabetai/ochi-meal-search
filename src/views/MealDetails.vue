@@ -22,7 +22,7 @@ onMounted(async () => {
 
 <template>
   <div class="max-w-screen-md mx-auto p-8">
-    <h1 class="text-5xl font-bold mb-5">{{ meal.strMeal }}</h1>
+    <h1 class="text-5xl font-bold mb-5 text text-orange-500">{{ meal.strMeal }}</h1>
     <img :src="meal.strMealThumb" :alt="meal.strMeal" class="w-full" />
     <!-- カテゴリー -->
     <div class="grid grid-cols-3 sm:grid-cols-3 text-lg py-2">

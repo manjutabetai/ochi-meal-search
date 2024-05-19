@@ -1,17 +1,16 @@
 <script setup>
-import { defineProps } from 'vue'
 import YoutubeButton from './YoutubeButton.vue'
 import { truncateWords } from '../filters'
 const { meal } = defineProps({
   meal: {
-    type: Object,
     required: true,
+    type: Object,
   },
 })
 </script>
 
 <template>
-  <div class="bg-white shadow rounded-lg">
+  <div class="bg-white max-w-lg shadow rounded-xl hover:scale-105 transition-all">
     <router-link :to="{ name: 'mealDetails', params: { id: meal.idMeal } }">
       <img
         :src="meal.strMealThumb"
@@ -19,12 +18,14 @@ const { meal } = defineProps({
         class="rounded-t-xl w-full h-48 object-cover"
       />
     </router-link>
-
-    <h3 class="font-bold pl-3">{{ meal.strMeal }}</h3>
-
-    <p class="mb-4">
-      {{ truncateWords(meal.strInstructions, 20) }}
-    </p>
-    <YoutubeButton :meal="meal" />
+    <div class="p-3">
+      <h3 class="font-bold">{{ meal.strMeal }}</h3>
+      <p class="mb-4">
+        {{ truncateWords(meal.strInstructions, 20) }}
+      </p>
+      <div class="flex items-center justify-between">
+        <YoutubeButton :meal="meal" />
+      </div>
+    </div>
   </div>
 </template>
